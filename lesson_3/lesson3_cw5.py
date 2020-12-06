@@ -5,38 +5,19 @@
 выполнение программы завершается. Если специальный символ введен после нескольких чисел, то вначале нужно добавить
 сумму этих чисел к полученной ранее сумме и после этого завершить программу.
 """
-def sum_list():
-    """
-    Функция просто инициализирует сумматор
-    :return: int
-    """
-
-    sum1 = 0
-    def int_sum_list():
-        """
-        Функция получает строку из натуральных чисел и суммирует их в нелокальную переменную, пока не найдёт
-        кодовый символ заервшения
-        :return: float
-        """
-        a = []
-        while 'b' not in a:
-            a = input('Enter row number').split(' ')
-            nonlocal sum1
-            for i in a:
-                if i != 'b':
-                    try:
-                        sum1 += float(i)
-                    except TypeError as err:
-                        print(err)
-                        return None
-                    except ValueError as err:
-                        print(err)
-                        return None
-                else:
-                    return sum1
-        return sum1
-    return int_sum_list()
-
-
-sum_a = sum_list
-print(sum_a())
+summa = 0
+flag = ''
+while flag != 'b':
+    try:
+        user_input = input('? \n')
+        str = user_input.split(' b')[0].split(" ")
+        flag = 'b' if 'b' in user_input else ''
+    except ValueError as err:
+        break
+    try:
+        summa = sum( list(map(lambda x: float(x), str))) + summa
+    except ValueError as err:
+        print(err)
+    except AttributeError as err:
+        print(err)
+print(summa)

@@ -9,17 +9,15 @@
 
 def int_func(arg):
     """
-    Функция принимает строку и возвращает первое её слово с заглавной буквы
-    :param arg: string
-    :return: string
+    Возвращает аргумент с большой буквы
+    :param arg:
+    :return:
     """
     try:
-        return f'{arg.split(" ")[0]}'.capitalize()
+        return arg.capitalize()
     except Exception as err:
         return err
 
 
-s = ''
-for i in input('Enter smth').split(' '):
-    s += f'{int_func(i)} '
-print(s)
+inp = input('Enter smth').split(' ')
+print(list(map(int_func, inp)))
