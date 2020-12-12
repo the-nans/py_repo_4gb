@@ -16,12 +16,8 @@ def iter1(start, fin):
     итератор, генерирующий целые числа, начиная с указанного
     :return: список целых чисел начиная со start и до fin
     """
-    result = []
-    for i in count(start-1):
-        if i == fin + 1:
-            return result
-        result.append(i)
-
+    for i in range(start, fin+1):
+        yield i
 
 def iter2(user_list, fin):
     """
@@ -30,14 +26,13 @@ def iter2(user_list, fin):
     """
     result = []
     c = 0
-    try:
-        for i in cycle(user_list):
-            if c == (fin)*len(user_list):
-                return result
-            result.append(i)
-            c += 1
-    except TypeError:
-        return [user_list]
+    for i in cycle(user_list):
+        c += 1
+        result.append(i)
+        if c <= fin*len(user_list):
+            yield result
+        else:
+            break
 
 
 iteration = "Вводите аргументы правильно"
@@ -46,19 +41,26 @@ if int(argv[1]) == 1:
         arg_start = int(argv[2])
         arg_end = int(argv[3])
         iteration = iter1(arg_start, arg_end)
+        while True:
+            print(next(iteration))
+
     except ValueError:
         print('Аргументы должны быть целыми числами!')
     except IndexError:
         print('Минимум три аргумента!')
+    except StopIteration:
+        print("Конец")
 elif int(argv[1]) == 2:
     try:
         arg_end = int(argv[2])
         arg_start_list = argv[3::]
         iteration = iter2(arg_start_list or ["No list defined"], arg_end or 1)
+        while True:
+            print(next(iteration))
     except IndexError:
         print('Минимум три аргумента!')
+    except StopIteration:
+        print("Конец")
 else:
     print("lesson4_cw6.py [1 <начало отсчета> <конец последовательности>|2 <множество, "
           "через пробел> <кол-во повторений>] ")
-
-print(iteration)
