@@ -16,14 +16,16 @@ def my_func(x, y=-1):
     try:
         a = abs(int('%.0d'%y))
     except TypeError as err:
-        return err
+        print(err)
+        return -1
     pow = x     # копируем значение x в другую ячейку, для сохранности
     for i in range(1, a):
         x *= pow
     try:
         return 1/x
     except ZeroDivisionError as err:
-        return err
+        print(err)
+        return -1
 
 
 # и через возведение в степень с помощью **
@@ -41,13 +43,13 @@ def my_func_simple(x, y=-1):
         return x**y
     except ZeroDivisionError as err:
         print(err)
-        return None
+        return -1
     except ValueError as err:
         print(err)
-        return None
+        return -1
     except TypeError as err:
         print(err)
-        return None
+        return -1
 
 
 print(my_func(3, -4))

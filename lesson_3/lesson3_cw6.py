@@ -16,7 +16,8 @@ def int_func(arg):
     try:
         return arg.capitalize()
     except Exception as err:
-        return err
+        print(err)
+        return -1
 
 
 inp = input('Enter smth').split(' ')

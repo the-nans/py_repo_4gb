@@ -13,6 +13,7 @@ while flag != 'b':
         str = user_input.split(' b')[0].split(" ")
         flag = 'b' if 'b' in user_input else ''
     except ValueError as err:
+        print(err)
         break
     try:
         summa = sum( list(map(lambda x: float(x), str))) + summa

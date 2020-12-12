@@ -14,14 +14,12 @@ def div_a_b(precision = 3):
     """
     a = input('Enter float a: ')
     b = input('Enter float b: ')
-    try:
-        return f'%.{precision}f'%(float(a) / float(b))
-    except ZeroDivisionError as err:
-        print('Division by zero')
-        print(err)
-        return None
-    except ValueError as err:
-        print(err)
-        return None
+    return f'%.{precision}f'%(float(a) / float(b))
 
-print(div_a_b(5))
+
+try:
+    print(div_a_b(5))
+except ZeroDivisionError as err:
+    print(err)
+except ValueError as err1:
+    print(err1)
