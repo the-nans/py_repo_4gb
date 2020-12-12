@@ -30,7 +30,7 @@ def neprogrammny_spisok_zarplat():
     with open("staff.txt", "w", encoding="utf-8") as fhandle:
         for el in salaries:
             for key, val in el.items():
-                fhandle.write(f"{val} ")
+                fhandle.write(f"{val},")
             fhandle.write('\n')
 
 
@@ -42,10 +42,10 @@ cnt = 0
 try:
     with open("staff.txt") as fhandle:
         for lines in fhandle.readlines():
-            if float(lines.split(" ")[2]) < 20000 :
+            if float(lines.split(",")[2]) < 20000 :
                 print(lines)
-            avg += float(lines.split(" ")[2])
+            avg += float(lines.split(",")[2])
             cnt += 1
     print(f'Средняя зарплата: {(avg/cnt).__round__(2)}')
 except Exception as err:
-    print(err)
+     print(err)
