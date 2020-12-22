@@ -9,7 +9,7 @@
 классы для основных классов проекта, проверить на практике работу декоратора @property.
 """
 from abc import ABC, abstractmethod
-class Cloth(ABC):
+class _Cloth(ABC):
     def __init__(self, fabric_factor):
         self.fabric_factor = fabric_factor
 
@@ -18,7 +18,7 @@ class Cloth(ABC):
     def calc_fabric(self):
         pass
 
-class Suit(Cloth):
+class Suit(_Cloth):
 
 
     @property
@@ -26,7 +26,7 @@ class Suit(Cloth):
         return self.fabric_factor * 2 + 0.3
 
 
-class Coat(Cloth):
+class Coat(_Cloth):
 
     @property
     def calc_fabric(self):
