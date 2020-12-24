@@ -30,7 +30,7 @@ class Coat(Cloth):
 
     @property
     def calc_fabric(self):
-        return self.fabric_factor/6.5 + 0.5
+        return round(self.fabric_factor/6.5,2) + 0.5
 
 if __name__ == "__main__":
     suit1 = Suit(180)
