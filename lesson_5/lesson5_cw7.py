@@ -47,11 +47,11 @@ with open("companies.txt", 'r') as fhandle:
             profitable.append(int(t[2]) - int(t[3]))
     to_write.append(result)
     try:
-        ap = (sum(profitable) / len(profitable)).__round__(2)
+        ap = round((sum(profitable) / round(len(profitable), 2)),2)
         print(f'average profit: {ap}')
         to_write.append({"average_profit": ap})
-    except ZeroDivisionError:
-        print('No profitable companies this time')
+    except Exception as err:
+        print(err)
         to_write.append({"average_profit": "no_profits"})
     print(result)
 with open("companies_result.json", "w") as jhandle:
