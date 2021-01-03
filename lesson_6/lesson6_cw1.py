@@ -12,7 +12,7 @@ from time import sleep
 
 
 class TrafficLight:
-
+    __sleep_times = {"red": 7, "yellow": 2, "green": 3}
     def __init__(self):
         self.colors_order = {"green" : "yellow", "red" : "green", "yellow" : "red"}
         self.__color = "green"
@@ -33,8 +33,8 @@ class TrafficLight:
             return
 
     def color_sleep(self):
-        sleep_times = {"red" : 7, "yellow" : 2, "green" : 3}
-        sleep(sleep_times[self.__color])
+
+        sleep(self.__sleep_times[self.__color])
 
 t_l = TrafficLight()
 try:
