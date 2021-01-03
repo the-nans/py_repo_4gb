@@ -113,6 +113,22 @@ class Matrix:
     def __copy__(self):
         return Matrix(self.matrix_lines)
 
+    def invert(self):
+        m3 = self.matrix_lines.copy()
+        temp_row = []
+        temp_mx = []
+        for line in m3:
+            x=1
+            temp_row = [el*-1 for el in line]
+            temp_mx.append(temp_row)
+        x=1
+        return Matrix(temp_mx)
+
+    def __sub__(self, other):
+        q = other.invert()
+        x = 2
+        return self + q
+
     def __add__(self, other):
         max_width = max(len(self.start_max_row), len(other.start_max_row))
         max_height = max(self.start_max_col, other.start_max_col)
@@ -138,6 +154,15 @@ class Matrix:
             j += 1
         return Matrix(temp_matrix)
 
+    def __eq__(self, other):
+        m3 = self - other
+        x=1
+        for line in m3.matrix_lines:
+            for item in line:
+                if item != 0:
+                    return False
+        return True
+
     def __str__(self):
         to_print = self.__beautify()
         temp_str = ""
@@ -154,3 +179,15 @@ if __name__ == "__main__":
 
     print(f"{matr1} + \n{matr1} + \n{matr2} = \n")
     print(matr1 + matr1 + matr2)
+    print(matr1)
+    print(matr2)
+    """
+    А теперь давайте упоремся тестировать эту хреновину!
+    """
+    m3 = [[-5,    -6,     0,     0,     0],
+     [3,     6,     9,   12,     5 ],
+     [0,     0,     0,     0,     0],
+     [1,     1,     1,     1,     1]]
+    print(Matrix(m3))
+
+    print(matr1+matr1+matr2 == Matrix(m3))
