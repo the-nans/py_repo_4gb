@@ -19,26 +19,27 @@
 class Matrix:
     def __init__(self, matrix_rows: list):
 
-        def cut_trailing_zeroes(row):
-            """
-            отрывает последние нули из строк, например
-            :param row: 0,1,2,3,0,0
-            :return: 0,1,2,3
-            """
-            while len(row) > 0:
-                if row[len(row) - 1] == 0:
-                    row.pop(len(row) - 1)
-                else:
-                    break
-            return row
 
         self.matrix_lines = matrix_rows.copy()      # копируем значения аргумента
         for line in self.matrix_lines:
-                cut_trailing_zeroes(line)
+                self.cut_trailing_zeroes(line)
         self.start_max_row = self.matrix_lines[0]
         for matrix in self.matrix_lines:
             self.start_max_row = matrix if len(matrix) > len(self.start_max_row) else self.start_max_row
         self.start_max_col = len(self.matrix_lines)
+
+    def cut_trailing_zeroes(self, row):
+        """
+        отрывает последние нули из строк, например
+        :param row: 0,1,2,3,0,0
+        :return: 0,1,2,3
+        """
+        while len(row) > 0:
+            if row[len(row) - 1] == 0:
+                row.pop(len(row) - 1)
+            else:
+                break
+        return row
 
     def __row_add(self, row1, row2):
         """
@@ -53,7 +54,8 @@ class Matrix:
         for el in row1:
             try:
                 row3.append(el + row2[row1.index(el)])
-            except IndexError:
+            except Exception as err:
+                print(f"Ошибка {err}")
                 row3.append(el)
         return row3
 
