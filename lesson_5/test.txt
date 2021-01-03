@@ -1,0 +1,4 @@
+{"cotrudnik" : "Iv anov",
+"salary" : 5000, 
+"position" : "Cleaning" 
+}
